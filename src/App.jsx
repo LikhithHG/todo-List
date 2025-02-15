@@ -6,17 +6,33 @@ import TodoList from './components/TodoList';
 
 function App() {
     
-    const [tasks, setTask] = useState([]);
+    const [tasks, setTasks] = useState([]);
 
+    //Function to add Task
     const addTask = (task) => {
-        setTask([...tasks, task]);
+        setTasks([...tasks, task]);
+    }
+
+    //Function to Remove Task
+    const removeTask = (index) => {
+        const newTasks = tasks.filter((_, i) => i !== index);
+        setTasks(newTasks);
+    }
+
+    //Function to edit Task
+    const editTask = (index, newText) => {
+        if(newText.trim() === '')//prevent empty edits because it will return early without changing state variables
+            return;
+        const updatedTasks = [...tasks];
+        updatedTasks[index] = newText;
+        setTasks(updatedTasks);
     }
     
     return (
         <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4'>
             <h1 className='font-3xl font-bold text-blue-500 mb-4'>My Tasks</h1>
             <TodoInput addTask={addTask}/>
-            <TodoList tasks={tasks} />
+            <TodoList tasks={tasks} removeTask = {removeTask} editTask={editTask}/>
         </div>
     )
   
