@@ -14,7 +14,7 @@ const TodoInput = ({addTask}) => {
     return (
         <div className="flex gap-2">
             <input 
-                className="border border-gray-300 p-2 rounded-lg outline-none"
+                className="border border-gray-500 p-2 rounded-lg outline-none w-96 max-x-full"
                 type="text"
                 placeholder="Enter the task to be added..."
                 value = {task}
